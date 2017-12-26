@@ -1,0 +1,29 @@
+1.City wise list all the Condos which is not less than ten thousand.
+
+-->hive (niit)> select city,price from realestate where type='Condo' and price>=10000; 
+Time taken: 0.125 seconds, Fetched: 54 row(s)
+==============================================================================================================================
+2.In GALT city which residential type has more than 800sq__ft. Display their respective details street,sq__ft,sale_date,city.
+
+-->hive (niit)>select street,sqft,sdate,city from realestate where city='GALT' and sqft>800; 
+Time taken: 0.133 seconds, Fetched: 20 row(s)
+
+===============================================================================================================================
+3.Which is the cheapest Condo in CA. name the city,street and price for the Condo.
+
+-->hive (niit)> Select city,street,price from realestate where state='CA' and type='Condo' and price in (Select min(price) from realestate a where a.state='CA' and a.type='Condo');
+
+SACRAMENTO	5840 WALERGA RD	40000
+Time taken: 7.796 seconds, Fetched: 1 row(s)
+================================================================================================================================
+4.List top 5 residency details which lie in the budget of 60000-120000, an area more than 1450, sold after 17th may, min bedroom 3 and, min bathroom 2.
+
+-->hive (niit)> select price,sqft,beds,baths from realestate where price between 60000 and 120000 and beds>=3 and baths>=2 order by price limit 5 ;
+Time taken: 1.387 seconds, Fetched: 5 row(s)
+
+================================================================================================================================
+5.separate list of residential apartments with more than 2 beds. Also include columns in following order City,Baths,Sq_feet,Price,flat_type,Beds respectively.
+
+-->hive (niit)>select city,baths,sqft,price,type,beds from realestate where type='Residential' and beds>2 order by city;
+Time taken: 1.456 seconds, Fetched: 715 row(s)
+===============================================================================================================================
